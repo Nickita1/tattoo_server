@@ -1,0 +1,119 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type BrandPartnerProfileEntity {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+type EmployeeProfileEntity {
+  id: ID!
+  name: String!
+  description: String!
+  gender: String!
+  date_of_birth: DateTime!
+  education: String!
+  experience: String!
+  contact_number: String!
+  contact_email: String!
+  style: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type UserEntity {
+  id: ID!
+  password: String!
+  username: String!
+  role: String!
+  picture_link: String!
+  employee_profile: EmployeeProfileEntity!
+  employee_profile_id: String!
+  brand_partner_profile: BrandPartnerProfileEntity!
+  brand_partner_profile_id: String!
+}
+
+type LoginResponse {
+  access_token: String!
+  user: UserEntity!
+}
+
+type Query {
+  getAllUsers(take: Float!, skip: Float!): [UserEntity!]!
+  getOneUser(username: String!): UserEntity!
+}
+
+type Mutation {
+  login(loginUserInput: LoginUserInput!): LoginResponse!
+  createUser(uploadedFile: Upload!, createUser: CreateUserInput!): UserEntity!
+  updateUser(updateUser: UpdateUserInput!, uploadedFile: Upload): UserEntity!
+  removeUser(id: String!): UserEntity!
+}
+
+input LoginUserInput {
+  username: String!
+  password: String!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+input CreateUserInput {
+  password: String!
+  username: String!
+  brand_partner_profile: CreateBrandPartnerInput
+  employee_profile: CreateEmployeeInput
+}
+
+input CreateBrandPartnerInput {
+  name: String!
+  description: String!
+}
+
+input CreateEmployeeInput {
+  name: String!
+  description: String!
+  gender: EmployeeGender!
+  date_of_birth: DateTime!
+  education: String!
+  experience: String!
+  contact_number: String!
+  contact_email: String!
+  style: String!
+}
+
+enum EmployeeGender {
+  MALE
+  FEMALE
+  ANOTHER
+}
+
+input UpdateUserInput {
+  password: String
+  username: String
+  id: ID!
+  brand_partner_profile: UpdateBrandPartnerInput
+  employee_profile: UpdateEmployeeInput
+}
+
+input UpdateBrandPartnerInput {
+  name: String
+  description: String
+}
+
+input UpdateEmployeeInput {
+  name: String
+  description: String
+  gender: EmployeeGender
+  date_of_birth: DateTime
+  education: String
+  experience: String
+  contact_number: String
+  contact_email: String
+  style: String
+}
