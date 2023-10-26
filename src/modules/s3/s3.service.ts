@@ -17,9 +17,7 @@ export class S3Service {
       accessKeyId: this.configService.get('AWS_USER_ACCESS_KEY_ID'),
       secretAccessKey: this.configService.get('AWS_USER_SECRET_ACCESS_KEY_ID'),
       region: this.configService.get('AWS_REGION'),
-      params: this.configService.get('S3_BUCKET_NAME'),
-      s3ForcePathStyle: true,
-      endpoint: 'http://localhost:9090'
+      params: this.configService.get('S3_BUCKET_NAME')
     });
 
     const { filename, mimetype } = file;
