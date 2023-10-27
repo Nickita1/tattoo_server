@@ -12,7 +12,7 @@ async function bootstrap() {
     new ExpressAdapter(),
   );
   app.enableCors({
-    origin: ['http://localhost:8000'],
+    origin: ['https://tattoo-client.onrender.com/'],
   });
   app.use(
     graphqlUploadExpress({
